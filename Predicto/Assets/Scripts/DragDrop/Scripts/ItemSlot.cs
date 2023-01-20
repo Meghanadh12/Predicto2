@@ -12,7 +12,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     public GameObject Slot2;
     public GameObject Slot3;
     public GameObject Slot4;
-    public bool isFilled = false;
+    public static bool isFilled = false;
     public GameObject baseLetter;
     public GameObject b;
     public void OnDrop(PointerEventData eventData)

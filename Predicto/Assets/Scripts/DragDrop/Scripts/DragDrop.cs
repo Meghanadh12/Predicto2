@@ -52,27 +52,6 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
-        List<GameObject> slots = GameManager.Slots;
-        Debug.Log("--------->" + slots);
-        foreach (GameObject slot in slots)
-        {
-            Debug.Log(slot);
-            InSlot = true;  
-            if (slot.GetComponent<ItemSlot>().isFilled)
-            {
-                if (eventData.pointerDrag.transform.position == slot.transform.position)
-                {
-                    //GameObject baseletter = slot.GetComponent<ItemSlot>().baseLetter;
-                    Debug.Log("0");
-                    //baseletter.GetComponent<Letters>().setPositon();
-                    eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = slot.GetComponent<RectTransform>().anchoredPosition;
-                    slot.GetComponent<ItemSlot>().isFilled = true;
-                }
-                else if (!slot.GetComponent<ItemSlot>().isFilled){
-                    SetPositoin();
-                }
-            }
-        }
 
     }
 
