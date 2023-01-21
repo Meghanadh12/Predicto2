@@ -12,7 +12,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
     public GameObject Slot2;
     public GameObject Slot3;
     public GameObject Slot4;
-    public static bool isFilled = false;
+    public bool isFilled = false;
     public GameObject baseLetter;
     public GameObject b;
     public void OnDrop(PointerEventData eventData)
@@ -20,23 +20,18 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         Debug.Log("OnDrop");
         if (eventData.pointerDrag != null)
         {
-            DragDrop.canCheck = false;
+            
+            if (isFilled && baseLetter != null)
+            {
+                baseLetter.GetComponent<Letters>().setPositon();
+                isFilled = false;
+            }
+            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = self.GetComponent<RectTransform>().anchoredPosition;
             eventData.pointerDrag.GetComponent<Letters>().FillObjectList();
             baseLetter = eventData.pointerDrag;
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = self.GetComponent<RectTransform>().anchoredPosition;
+
             Debug.Log(self.GetComponent<RectTransform>().anchoredPosition);
-            DragDrop.canCheck = true;
-            isFilled = true;
-            DragDrop.InSlot = true;
-            Letters.a = false;
         }
     }
-
-    public void ChangePosition()
-    {
-        baseLetter.GetComponent<Letters>().setPositon();
-      
-    }
-
-} 
+}
 

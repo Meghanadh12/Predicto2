@@ -52,7 +52,23 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, I
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+        List<GameObject> slots = GameManager.Slots;
+        Debug.Log("--------->" + slots);
+        bool isOnSlot = false;
+        foreach (GameObject slot in slots)
+        {
 
+            if (self.transform.position == slot.transform.position)
+            {
+                isOnSlot = true;
+                Debug.Log("-------------------------------> Same Posiiton");
+
+            }
+        }
+        if (!isOnSlot)
+        {
+            SetPositoin();
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData) {
